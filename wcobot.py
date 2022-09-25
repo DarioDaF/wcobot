@@ -20,7 +20,7 @@ Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
 
-VERSION = '0.2.1'
+VERSION = '0.2.2'
 
 import logging
 
