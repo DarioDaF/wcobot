@@ -20,7 +20,7 @@ Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
 
-VERSION = '0.2'
+VERSION = '0.2.1'
 
 import logging
 
@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
 def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text('Hi! Use /scrape <seconds> <page> to set the target')
+    update.message.reply_text(f'Hi (V.{VERSION})! Use /scrape <seconds> <page> to set the target')
 
 MAX_ENTRIES = 5
 
@@ -103,12 +103,13 @@ def set_scrape(update: Update, context: CallbackContext) -> None:
 
         job_removed = scrape_jobs.remove(chat_id, page) > 0
         job = scrape_jobs.add(context, chat_id, page, interval)
-        job.run(context.dispatcher) # Force first run
 
         text = 'Timer successfully set!'
         if job_removed:
             text += ' Old one was removed.'
         update.message.reply_text(text)
+
+        job.run(context.dispatcher) # Force first run
 
     except (IndexError, ValueError):
         update.message.reply_text('Usage: /scrape <seconds> <page>')
