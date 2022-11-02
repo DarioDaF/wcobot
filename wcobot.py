@@ -5,23 +5,18 @@
 # This program is dedicated to the public domain under the CC0 license.
 
 """
-Simple Bot to send timed Telegram messages.
+Bot to check for updates on sites periodically and send messages when new
+stuff is present.
 
-This Bot uses the Updater class to handle the bot and the JobQueue to send
-timed messages.
-
-First, a few handler functions are defined. Then, those functions are passed to
-the Dispatcher and registered at their respective places.
-Then, the bot is started and runs until we press Ctrl-C on the command line.
+Bot based on Updater class to handle JobQueues to send timed messages.
 
 Usage:
-Basic Alarm Bot example, sends a message after a set time.
-Press Ctrl-C on the command line or send a signal to the process to stop the
-bot.
+Press Ctrl-C on the command line or send a signal to the process to stop the bot.
 """
 
-VERSION = '0.3.0'
+VERSION = '0.3.1'
 SAVE_FILE = './wcobot.json'
+TOKEN_FILE = './wcobot.token'
 
 import logging, json, os
 
@@ -161,7 +156,8 @@ def main():
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
-    TOKEN = "x"
+    with open(TOKEN_FILE, 'r') as fp:
+        TOKEN = fp.read().strip()
     updater = Updater(TOKEN, use_context=True)
 
     # Get the dispatcher to register handlers
