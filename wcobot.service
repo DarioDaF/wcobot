@@ -1,0 +1,12 @@
+[Unit]
+Description=Telegram WCOBot
+
+[Service]
+Type=simple
+KillSignal=SIGINT
+ExecStart=/usr/bin/env python3 ./wcobot.py
+WorkingDirectory=/home/server/wcobot/
+User=server
+
+[Install]
+WantedBy=multi-user.target

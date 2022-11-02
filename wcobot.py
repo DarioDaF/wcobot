@@ -17,6 +17,7 @@ Press Ctrl-C on the command line or send a signal to the process to stop the bot
 VERSION = '0.3.1'
 SAVE_FILE = './wcobot.json'
 TOKEN_FILE = './wcobot.token'
+MAX_ENTRIES = 5
 
 import logging, json, os
 
@@ -39,8 +40,6 @@ logger = logging.getLogger(__name__)
 # context. Error handlers also receive the raised TelegramError object in error.
 def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text(f'Hi (V.{VERSION})! Use /scrape <seconds> <page> to set the target')
-
-MAX_ENTRIES = 5
 
 class JobDescr:
     def __init__(self, chat_id, page: str, interval: int, latest: str = ''):
