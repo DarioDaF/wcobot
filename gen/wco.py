@@ -26,7 +26,7 @@ ENDPOINTS = [
     )
 ]
 
-def checkPage(page, latest_list=latests, endpoint=ENDPOINTS[0]):
+def checkPage(page, latest_list=latests, endpoint=ENDPOINTS[1]):
     link = endpoint.baseSite + page
     if page in latest_list:
         latest = latest_list[page]
