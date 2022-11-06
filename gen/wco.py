@@ -23,6 +23,11 @@ ENDPOINTS = [
         'https://www.wcostream.net/anime/',
         (b'id="catlist-listview"', b'</div>'),
         (b'<li>', b'</li>')
+    ),
+    WCOEndpoint(
+        'https://www.wcoforever.net/anime/',
+        (b'id="sidebar_right3"', b'</div></div>'),
+        (b'<div class="cat-eps">', b'</div>')
     )
 ]
 
